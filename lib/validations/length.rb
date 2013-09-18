@@ -41,7 +41,7 @@ module DataValidator
       if value.kind_of?(String)
         if options[:tokenizer]
           options[:tokenizer].call(value)
-        elsif !value.encoding_aware?
+        elsif !value.respond_to?(:encode)
           value.mb_chars
         end
       end || value
